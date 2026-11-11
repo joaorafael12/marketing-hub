@@ -198,7 +198,7 @@ function mostrarTarefas(){
 
 async function criarTarefa(e){
  e.preventDefault();
- const {error}=await db.from("tarefas").insert({
+const {error}=await db.from("tasks").insert({
   title:document.getElementById("titulo").value,
   description:document.getElementById("descricao").value,
   assigned_to:document.getElementById("responsavel").value||null,
@@ -214,7 +214,7 @@ async function criarTarefa(e){
 document.getElementById("taskForm").addEventListener("submit",criarTarefa);
 
 async function mudarStatus(id,status){
-const {error}=await db.from("tarefas").update({status}).eq("id",id);
+const {error}=await db.from("tasks").update({status}).eq("id",id);
  if(error){mensagem("aviso",error.message);return;}
  await carregarTarefas();
 }
